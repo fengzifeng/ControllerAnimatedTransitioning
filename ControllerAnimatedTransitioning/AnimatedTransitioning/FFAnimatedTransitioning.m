@@ -81,7 +81,6 @@
         toViewController.view.alpha = 1;
         [containerView bringSubviewToFront:fromViewController.view];
     }
-    //偶尔出现返回之后frame变了（不可复现），所以重新设置一下
     toViewController.view.frame = containerView.bounds;
     
     [CATransaction flush];

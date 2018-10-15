@@ -53,7 +53,6 @@
 
 - (void)panGestureHandler:(UIPanGestureRecognizer*)recognizer
 {
-    // Calculate how far the user has dragged across the view
     UIView *view = _navigationController.view;
     CGPoint translation = [recognizer translationInView:view];
     CGFloat progress = translation.x / CGRectGetWidth(view.bounds);
@@ -64,19 +63,16 @@
         CGPoint velocity = [recognizer velocityInView:view];
         NSInteger count = _navigationController.viewControllers.count;
         
-        if (location.x <  CGRectGetMidX(view.bounds) && velocity.x > 0 && count > 1) { // left half went right
-            // Create a interactive transition and pop the view controller
+        if (location.x <  CGRectGetMidX(view.bounds) && velocity.x > 0 && count > 1) {
             _interactiveTransition = [UIPercentDrivenInteractiveTransition new];
             [_navigationController popViewControllerAnimated:YES];
         }
-        else if (location.x >  CGRectGetMidX(view.bounds) && velocity.x < 0) { // right half went left
-            //Need topViewController implementation selector
+        else if (location.x >  CGRectGetMidX(view.bounds) && velocity.x < 0) {
             //push出一个新页面
             FFBaseViewController *topViewController = (id)_navigationController.topViewController;
             if ([topViewController respondsToSelector:@selector(viewControllerWillPushForLeftDirectionPan)]) {
                 UIViewController *viewController = [topViewController viewControllerWillPushForLeftDirectionPan];
                 if (viewController) {
-                    // Create a interactive transition and push the view controller
                     _interactiveTransition = [UIPercentDrivenInteractiveTransition new];
                     [_navigationController pushViewController:viewController animated:YES];
                 }
@@ -84,12 +80,10 @@
         }
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        // Update the interactive transition's progress
         [_interactiveTransition updateInteractiveTransition:progress];
     }
     else if (recognizer.state == UIGestureRecognizerStateEnded ||
              recognizer.state == UIGestureRecognizerStateCancelled) {
-        // Finish or cancel the interactive transition
         if (progress < 0.4  || recognizer.state == UIGestureRecognizerStateCancelled) {
             [_interactiveTransition cancelInteractiveTransition];
         } else {
