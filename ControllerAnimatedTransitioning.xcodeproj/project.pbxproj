@@ -183,8 +183,6 @@
 			children = (
 				9F2447B92170875F0051A7D0 /* AppDelegate.h */,
 				9F2447BA2170875F0051A7D0 /* AppDelegate.m */,
-				9F2447F2217095B40051A7D0 /* FFBaseViewController.h */,
-				9F2447F3217095B40051A7D0 /* FFBaseViewController.m */,
 				9F24482B2170AF190051A7D0 /* rootViewController.h */,
 				9F24482C2170AF190051A7D0 /* rootViewController.m */,
 				9F2447F521709B9E0051A7D0 /* firstViewController.h */,
@@ -238,6 +236,8 @@
 		9F2447EB217087810051A7D0 /* AnimatedTransitioning */ = {
 			isa = PBXGroup;
 			children = (
+				9F2447F2217095B40051A7D0 /* FFBaseViewController.h */,
+				9F2447F3217095B40051A7D0 /* FFBaseViewController.m */,
 				9F2447EC217087B00051A7D0 /* FFAnimatedTransitioning.h */,
 				9F2447ED217087B00051A7D0 /* FFAnimatedTransitioning.m */,
 				9F2447EF217094890051A7D0 /* FFNavDelegate.h */,

@@ -8,6 +8,9 @@
 
 #import "FFBaseViewController.h"
 #define HexColor(hexValue)  [UIColor colorWithRed:((float)(((hexValue) & 0xFF0000) >> 16))/255.0 green:((float)(((hexValue) & 0xFF00) >> 8))/255.0 blue:((float)((hexValue) & 0xFF))/255.0 alpha:1]   //16进制颜色值，如：#000000 , 注意：在使用的时候hexValue写成：0x000000
+#define ShortSystemVersion   [[UIDevice currentDevice].systemVersion floatValue]
+#define SCREEN_HEIGHT        ([[UIScreen mainScreen] bounds].size.height)
+#define IS_IPHONE_X (SCREEN_HEIGHT == 812.0f) ? YES : NO
 
 @interface FFBaseViewController ()
 
@@ -19,8 +22,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        self.navigationBar = [[FFNavigationBar alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
+        if (IS_IPHONE_X) {
+            self.navigationBar = [[FFNavigationBar alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 88)];
+
+        } else {
+            self.navigationBar = [[FFNavigationBar alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
+        }
         self.myNavigationItem = [[UINavigationItem alloc] initWithTitle:@""];
         NSLog(@"init 创建类 %@", NSStringFromClass([self class]));
         
